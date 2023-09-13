@@ -14,6 +14,7 @@ const premiumFeatureRoutes = require("./routes/premiumFeatures");
 const Order = require("./models/orders");
 const purchaseRoutes = require("./routes/purchase");
 const resetPasswordRoutes = require("./routes/resetpwd");
+const Forgotpassword = require("./models/resetpwd");
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,6 +29,9 @@ Expense.belongsTo(user);
 
 user.hasMany(Order);
 Order.belongsTo(user);
+
+user.hasMany(Forgotpassword);
+Forgotpassword.belongsTo(user);
 
 sequelize_db
   .sync({ alter: true })
